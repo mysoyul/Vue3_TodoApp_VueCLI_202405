@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoList :todo-array="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -13,14 +13,27 @@ import TodoInput from '@/components/TodoInput.vue'
 import TodoList from '@/components/TodoList.vue'
 import TodoFooter from '@/components/TodoFooter.vue'
 
+import { onBeforeMount, reactive } from 'vue'
+
 export default {
   components: {
     TodoHeader, TodoInput, TodoList, TodoFooter
   },
   setup() {
+    const todoItems = reactive([])
 
+    onBeforeMount(() => {
+      if (localStorage.length > 0) {
+        for (var i = 0; i < localStorage.length; i++) {
+          const itemJson = localStorage.getItem(localStorage.key(i))
+          if (itemJson) {
+            todoItems.push(JSON.parse(itemJson));
+          } //if
+        } //for
+      } //if
+    });
 
-    return {}
+    return { todoItems }
   }
 }
 </script>
@@ -53,7 +66,8 @@ button {
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
 }
 
-i,span {
-    cursor: pointer;
+i,
+span {
+  cursor: pointer;
 }
 </style>
