@@ -14,15 +14,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 const props = defineProps(['todoArray'])
 
-const todoItems = ref([])
+const emit = defineEmits(["remove:todo"])
 
-const removeTodo = (todoItem, index) => {
-    localStorage.removeItem(todoItem.item)
-    todoItems.value.splice(index, 1)
+const removeTodo = (todo, index) => {
+    emit('remove:todo', todo, index)
 }
 
 const toggleComplete = (todoItem) => {
