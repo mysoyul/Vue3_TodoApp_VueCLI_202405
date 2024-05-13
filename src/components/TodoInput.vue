@@ -8,7 +8,7 @@
         <span class="addContainer" @click="addTodo">
             <i class="fas fa-plus addBtn"></i>
         </span>
-        <MyModal v-if="showModal" @close="showModal = false">
+        <MyModal v-show="showModal" @close="showModal = false">
             <template v-slot:header>
                 <h3>
                     경고!
