@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput @add:todo="addTodo"></TodoInput>
     <TodoList :todo-array="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -33,7 +33,13 @@ export default {
       } //if
     });
 
-    return { todoItems }
+    const addTodo = (todoItem) => {
+      const todoItemObj = { completed: false, item: todoItem }
+      localStorage.setItem(todoItem, JSON.stringify(todoItemObj))
+      todoItems.push(todoItemObj)
+    }
+
+    return { todoItems, addTodo }
   }
 }
 </script>
