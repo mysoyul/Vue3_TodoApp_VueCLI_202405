@@ -1,12 +1,13 @@
 <template>
     <div class="inputBox shadow">
-        <p>
-            입력한 값1 = {{ newTodoItem }}
-        </p>
-        입력한 값2 = <span v-text="newTodoItem"></span><br />
+        <!-- <p>입력한 값1 = {{ newTodoItem }}</p>
+        입력한 값2 = <span v-text="newTodoItem"></span><br /> -->
         <!-- <input type="text" v-model="newTodoItem"> -->
         <input type="text" :value="newTodoItem" @input="handleInput" @keyup.enter="addTodo">
-        <button @click="addTodo">추가</button>
+        <!-- <button @click="addTodo">추가</button> -->
+        <span class="addContainer" @click="addTodo">
+            <i class="fas fa-plus addBtn"></i>
+        </span>
     </div>
 </template>
 
