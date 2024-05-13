@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="(item, index) in todoItems" :key="index">
+            <li v-for="(item, index) in todoItems" :key="index" class="shadow">
                 {{ item }}
             </li>
         </ul>
