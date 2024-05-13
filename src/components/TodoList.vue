@@ -3,6 +3,9 @@
         <ul>
             <li v-for="(item, index) in todoItems" :key="index" class="shadow">
                 {{ item }}
+                <span class="removeBtn" @click="removeTodo(item, index)">
+                    <i class="fas fa-trash-alt"></i>
+                </span>
             </li>
         </ul>
 
@@ -21,6 +24,11 @@ onBeforeMount(() => {
         }
     }
 })
+
+const removeTodo = (todoItem, index) => {
+    localStorage.removeItem(todoItem)
+    todoItems.value.splice(index, 1)
+}
 </script>
 
 <style scoped>
