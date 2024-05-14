@@ -3,7 +3,7 @@
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
     <TodoList></TodoList>
-    <TodoFooter @clear:todo="clearTodo"></TodoFooter>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -13,21 +13,11 @@ import TodoInput from '@/components/TodoInput.vue'
 import TodoList from '@/components/TodoList.vue'
 import TodoFooter from '@/components/TodoFooter.vue'
 
-import { reactive } from 'vue'
-
 export default {
   components: {
     TodoHeader, TodoInput, TodoList, TodoFooter
   },
-  setup() {
-    const todoItems = reactive([])
-
-    const clearTodo = () => {
-      localStorage.clear()
-      todoItems.splice(0)
-    }
-    return { todoItems, clearTodo }
-  }
+  
 }
 </script>
 
