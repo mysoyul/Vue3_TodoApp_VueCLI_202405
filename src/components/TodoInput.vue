@@ -25,6 +25,9 @@
 <script setup>
 import { ref } from 'vue'
 import MyModal from '@/components/common/MyModal.vue'
+import { useStore } from "vuex"
+
+const store = useStore()
 
 const showModal = ref(false)
 
@@ -44,7 +47,8 @@ const handleInput = (event) => {
 const addTodo = () => {
     if (newTodoItem.value !== "") {
         const todoItemStr = newTodoItem.value
-        emit("add:todo", todoItemStr)
+        //emit("add:todo", todoItemStr)
+        store.commit("addTodo", todoItemStr)
         clearInput()
     } else {
         showModal.value = !showModal.value
