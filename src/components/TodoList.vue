@@ -24,7 +24,8 @@ const todoItems = computed(() => store.state.todoItems)
 const emit = defineEmits(["remove:todo","toggle:todo"])
 
 const removeTodo = (todo, index) => {
-    emit('remove:todo', todo, index)
+    //emit('remove:todo', todo, index)
+    store.commit("removeTodo", { todo, index })
 }
 
 const toggleComplete = (todo, index) => {

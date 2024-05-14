@@ -25,5 +25,10 @@ export const store = createStore({
             localStorage.setItem(todoItem, JSON.stringify(todoItemObj));
             state.todoItems.push(todoItemObj);
         },//addTodo
+        removeTodo(state, payload) {
+            const { todo:{ item }, index } = payload
+            localStorage.removeItem(item);
+            state.todoItems.splice(index, 1);
+        },//removeTodo
     },
 })
