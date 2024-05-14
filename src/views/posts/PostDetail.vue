@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h2>PostDetail</h2>
+        <h2>PostDetail {{route.params.id}}
+</h2>
     </div>
 </template>
 
 <script>
-export default {
+import { useRoute } from "vue-router"
+export default {    
     setup () {
-        
+        const route = useRoute();    
 
-        return {}
+        return {route}
     }
 }
 </script>
