@@ -50,7 +50,7 @@ const addTodo = () => {
         //emit("add:todo", todoItemStr)
         //store.commit("addTodo", todoItemStr)
         const itemObj = { completed: false, item: todoItemStr }
-        store.dispatch("addTodo", itemObj)
+        store.dispatch("moduleTodo/addTodo", itemObj)
         clearInput()
     } else {
         showModal.value = !showModal.value
