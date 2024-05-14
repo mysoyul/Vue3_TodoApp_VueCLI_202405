@@ -12,32 +12,37 @@
             </div>
         </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { onBeforeMount, computed, watch } from "vue";
-  import { useRouter, useRoute } from "vue-router"
-  import { useStore } from "vuex"
-  const router = useRouter();
-  const route = useRoute();
-  const store = useStore();
-  const post = computed(() => store.state.modulePost.post);
-  onBeforeMount(() => {
+</template>
+
+<script setup>
+import { onBeforeMount, computed, watch } from "vue";
+import { useRouter, useRoute } from "vue-router"
+import { useStore } from "vuex"
+
+const router = useRouter();
+const route = useRoute();
+const store = useStore();
+
+const post = computed(() => store.state.modulePost.post);
+
+onBeforeMount(() => {
     fetchData();
-  });
-  const removePost = (id) => {
+});
+const removePost = (id) => {
     store.dispatch("modulePost/removePost", id);
     router.push("/posts");
-  };
-  const fetchData = () => {
-    if(route.params.id) {
-      store.dispatch("modulePost/loadPost", { id: +route.params.id })
+};
+const fetchData = () => {
+    if (route.params.id) {
+        store.dispatch("modulePost/loadPost", { id: +route.params.id })
     }
-  };
-  watch(() => route.params.id, fetchData)
-  </script>
-  <style scoped>
-  button {
+};
+
+watch(() => route.params.id, fetchData)
+
+</script>
+<style scoped>
+button {
     margin: 1rem 0;
-  }
-  </style>  
+}
+</style>
