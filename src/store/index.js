@@ -46,7 +46,14 @@ export const store = createStore({
                     commit('setTodoItems', items)
                 })
         }, //toggleTodo
-        
+        clearTodo({ commit }) {
+            http
+                .delete('/todos')
+                .then(r => r.data)
+                .then(items => {
+                    commit('setTodoItems', items)
+                })
+        }, //clearTodo
     },
     mutations: {
         setTodoItems(state, items) {
