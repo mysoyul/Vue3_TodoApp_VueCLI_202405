@@ -2,9 +2,8 @@
     <div>
         <TransitionGroup name="list" tag="ul">
             <li v-for="(todo, index) in todoItems" :key="index" class="shadow">
-                <i class="fas fa-check checkBtn" 
-                   :class="{ checkBtnCompleted: todo.completed }" 
-                   @click="toggleComplete(todo, index)"></i>
+                <i class="fas fa-check checkBtn" :class="{ checkBtnCompleted: todo.completed }"
+                    @click="toggleComplete(todo, index)"></i>
                 <span :class="{ textCompleted: todo.completed }">{{ todo.item }}</span>
                 <span class="removeBtn" @click="removeTodo(todo, index)">
                     <i class="fas fa-trash-alt"></i>
@@ -16,10 +15,15 @@
 
 <script setup>
 import { useStore } from "vuex"
-import { computed } from "vue"
+import { computed, onMounted } from "vue"
 
 const store = useStore()
 const todoItems = computed(() => store.state.todoItems)
+
+onMounted(() => {
+    store.dispatch("loadTodoItems")
+})
+
 
 const removeTodo = (todo, index) => {
     //emit('remove:todo', todo, index)
@@ -74,11 +78,12 @@ li {
 
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
+
 .list-enter-from,
 .list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
+    opacity: 0;
+    transform: translateX(30px);
 }
 </style>
