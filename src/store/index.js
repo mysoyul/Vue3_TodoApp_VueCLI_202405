@@ -16,8 +16,7 @@ export const store = createStore({
                 })
                 .catch(error => {
                     if (axios.isAxiosError(error)) {
-                        console.log(error?.response?.status +
-                            ' : ' + error.message)
+                        console.log(`status = ${error?.response?.status} : errMsg = ${error.message}`)
                     } else {
                         console.error(error);
                     }
