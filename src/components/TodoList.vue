@@ -34,6 +34,7 @@ const removeTodo = (todo) => {
 const toggleComplete = (todo) => {
     //emit('toggle:todo', todo, index)
     //store.commit("toggleTodo", { todo, index })
+    todo.completed = !todo.completed
     store.dispatch("toggleTodo", todo)
 }
 
