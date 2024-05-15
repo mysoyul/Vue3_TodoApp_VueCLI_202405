@@ -31,7 +31,7 @@ const router = useRouter()
 const {  defineField, handleSubmit, errors } = useForm({
     validationSchema: yup.object({
         email: yup.string().email().required(),
-        title: yup.string().required(),
+        title: yup.string().min(3).required(),
     }),
 });
 
